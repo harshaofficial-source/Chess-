@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Chess Professional</title>
+<meta name="description" content="Play chess offline against the computer or a friend, with the traditional chess set.">
+<meta name="theme-color" content="#12302A">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="table-bg"></div>
+
+<!-- Top bar -->
+<header class="topbar">
+  <button class="brand" id="homeBtn" aria-label="Go home">
+    <img class="brand-logo" src="icons/icon-192.png" alt="Chess Professional">
+    <span class="brand-name">Chess Professional</span>
+  </button>
+</header>
+
+<main id="app">
+
+  <!-- HOME SCREEN -->
+  <section class="screen" id="screen-home" data-screen>
+    <div class="hero">
+      <img class="hero-logo" src="icons/icon-512.png" alt="Chess Professional">
+      <p class="eyebrow">A quiet table, a long game</p>
+      <h1 class="hero-title">Chess Professional</h1>
+      <p class="hero-sub">Play offline, anytime, with the traditional chess set — against the computer or a friend across the same board.</p>
+    </div>
+
+    <div class="mode-cards">
+      <button class="mode-card" id="btnVsComputer">
+        <span class="mode-card-icon">♞</span>
+        <span class="mode-card-title">Vs Computer</span>
+        <span class="mode-card-desc">Three strengths, from learning to sharp.</span>
+      </button>
+      <button class="mode-card" id="btnTwoPlayer">
+        <span class="mode-card-icon">♟</span>
+        <span class="mode-card-title">Two Players</span>
+        <span class="mode-card-desc">Pass the board, same device.</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- DIFFICULTY SELECT -->
+  <section class="screen" id="screen-difficulty" data-screen>
+    <button class="back-link" data-back="screen-home">&larr; Back</button>
+    <h1 class="section-title">Choose your opponent</h1>
+    <p class="section-sub">Higher strengths look further ahead.</p>
+
+    <div class="diff-list">
+      <button class="diff-card" data-difficulty="beginner">
+        <span class="diff-badge diff-badge-beginner">I</span>
+        <span class="diff-body">
+          <span class="diff-name">Beginner</span>
+          <span class="diff-desc">Learning the moves. Plays loose, forgives mistakes.</span>
+        </span>
+      </button>
+      <button class="diff-card" data-difficulty="intermediate">
+        <span class="diff-badge diff-badge-intermediate">II</span>
+        <span class="diff-body">
+          <span class="diff-name">Intermediate</span>
+          <span class="diff-desc">Thinks two moves ahead. Punishes blunders.</span>
+        </span>
+      </button>
+      <button class="diff-card" data-difficulty="expert">
+        <span class="diff-badge diff-badge-expert">III</span>
+        <span class="diff-body">
+          <span class="diff-name">Expert</span>
+          <span class="diff-desc">Calculates deep, plays sharp. No mercy.</span>
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <!-- GAME SCREEN -->
+  <section class="screen" id="screen-game" data-screen>
+    <div class="game-layout">
+
+      <div class="board-column">
+        <div class="player-tag player-tag-top" id="playerTagTop">
+          <span class="player-tag-name" id="topName">Black</span>
+          <span class="captured-row" id="capturedByWhite"></span>
+        </div>
+
+        <div class="board-frame">
+          <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+          <div class="promo-picker" id="promoPicker" hidden>
+            <div class="promo-picker-inner">
+              <p class="promo-label">Promote to</p>
+              <div class="promo-options" id="promoOptions"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="player-tag player-tag-bottom" id="playerTagBottom">
+          <span class="player-tag-name" id="bottomName">White</span>
+          <span class="captured-row" id="capturedByBlack"></span>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="status-plate" id="statusPlate">White to move</div>
+
+        <div class="panel-actions">
+          <button class="btn btn-secondary" id="undoBtn">↶ Undo</button>
+          <button class="btn btn-secondary" id="newGameBtn">New game</button>
+          <button class="btn btn-ghost" id="resignBtn">Leave table</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- WIN / RESULT OVERLAY -->
+<div class="overlay" id="resultOverlay" hidden>
+  <div class="result-card" id="resultCard">
+    <p class="result-eyebrow" id="resultEyebrow"></p>
+    <h2 class="result-title" id="resultTitle"></h2>
+    <div class="result-actions">
+      <button class="btn btn-primary" id="resultRematch">Play again</button>
+      <button class="btn btn-secondary" id="resultHome">Back to table</button>
+    </div>
+  </div>
+</div>
+
+<script src="js/chess-engine.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
